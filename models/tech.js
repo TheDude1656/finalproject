@@ -1,6 +1,9 @@
-module.exports = function (sequelize, DataTypes) {
-    var Tech = sequelize.define("Tech", {name: DataTypes.STRING,
-    email: DataTypes.STRING, password: DataTypes.STRING});
+module.exports = (sequelize, DataTypes) => {
+    const Tech = sequelize.define("Tech", {
+        name: DataTypes.STRING,
+        email: DataTypes.STRING,
+        password: DataTypes.STRING,
+    });
 
     return Tech;
 };

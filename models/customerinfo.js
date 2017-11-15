@@ -1,5 +1,5 @@
-module.exports = function (sequelize, DataTypes) {
-    var customerInfo = sequelize.define("customerInfo", {
+module.exports = (sequelize, DataTypes) => {
+    const CustomerInfo = sequelize.define("CustomerInfo", {
         address: {
             type: DataTypes.STRING,
             allowNull: false
@@ -7,16 +7,23 @@ module.exports = function (sequelize, DataTypes) {
         phone: {
             type: DataTypes.INTEGER,
             allowNull: true
-        }
+        },
+        contactName: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        contactEmail: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
     });
 
-    customerInfo.associate = function (models) {
-        customerInfo.belongsTo(models.Customer, {
-            foreignKey: {
-                allowNull: false
-            }
+    CustomerInfo.associate = (models) => {
+        CustomerInfo.belongsTo(models.Customer, {
+            foreignKey: 'customerId',
+            onDelete: 'CASCADE',
         });
     };
 
-    return customerInfo;
+    return CustomerInfo;
 };

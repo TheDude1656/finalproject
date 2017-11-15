@@ -1,7 +1,14 @@
-module.exports = function (sequelize, DataTypes) {
-    var Customer = sequelize.define("Customer", {name: DataTypes.STRING});
-    Customer.associate = function (models) {
-        Customer.hasMany(models.customerInfo, {onDelete: "cascade"});
+module.exports = (sequelize, DataTypes) => {
+    const Customer = sequelize.define("Customer", {
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+    });
+    Customer.associate = (models) => {
+        Customer.hasMany(models.CustomerInfo, {
+            foreignKey: 'customerId',
+        });
     };
     return Customer;
 };
