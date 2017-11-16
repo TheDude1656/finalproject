@@ -9,9 +9,7 @@ const db = require("./models");
 require('dotenv').config();
 //requiring routes
 require('./routes')(app);
-app.get('*', (req, res) => res.status(200).send({
-  message: 'Here is a list of customers!',
-}));
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
