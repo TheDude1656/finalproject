@@ -1,4 +1,5 @@
 const CustomerInfo = require('../models').CustomerInfo;
+const Customer = require('../models').Customer;
 
 module.exports = {
     create(req, res) {
@@ -7,16 +8,22 @@ module.exports = {
                 address: req.body.address,
                 phone: req.body.phone,
                 contactName: req.body.constactName,
-                contactEmail: req.body.contactEmail 
+                contactEmail: req.body.contactEmail,
+                customerId: req.params.customerId 
             })
-            .then(CustomerInfo=> res.status(201).send(CustomerInfo))
+            .then(customerInfo=> res.status(201).send(customerInfo))
             .catch(error =>res.status(400).send(error));
     },
-    // list(req,res) {
-    //     return CustomerInfo
-    //     .all()
-    //     .then(CustomerInfo => res.status(200).send(CustomerInfo))
-    //     .catch(error => res.status(400).send(error));
-    // },
+    list(req, res) {
+        return CustomerInfo
+        .findAll({
+            indclude: [{
+                model: Customer,
+                as: 'customers',
+            }],
+        })
+        .then(customerInfo => res.status(200).send(customerInfo))
+        .catch(error => res.status(400).send(error));
+    }
     
 };

@@ -1,4 +1,5 @@
 const customerController = require('../controllers').customers;
+const customerInfoController = require('../controllers').customerInfos;
 
 module.exports = (app) => {
     app.get('/api', (req, res) => res.status(200).send({
@@ -6,5 +7,8 @@ module.exports = (app) => {
     }));
 
     app.post('/api/customers', customerController.create);
-    // app.get('/api/customers', customerController.list);
+    app.get('/api/customers', customerController.list);
+
+    app.post('/apit/customers/:customerId/info', customerInfoController.create);
+    app.get('/api/customers/:customerId', customerController.retrieve);
 };
