@@ -4,6 +4,7 @@ import Main from "./pages/Main";
 import NoMatch from "./pages/NoMatch";
 import NewTech from "./pages/NewTech";
 import LoggedIn from "./pages/LoggedIn";
+import Complete from "./pages/Complete";
 
 
 const App = () =>
@@ -13,6 +14,7 @@ const App = () =>
         <Route exact path="/" component={Main} />
         <Route exact path="/NewTech" component={NewTech} />
         <Route exact path="/loggedin" component={LoggedIn} />
+        <Route exact path="/completedform" component={Complete} />
         <Route component={NoMatch} />
       </Switch>
     </div>

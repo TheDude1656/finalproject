@@ -68,7 +68,9 @@ const App = () => (
             
             
         
-        <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Home</Link>
+            <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Home</Link>
+            <Link to={`/completedform`} className="btn btn-lg loginBtn btn-outline-primary">Submit</Link>
+            
     </div>
     
 );
