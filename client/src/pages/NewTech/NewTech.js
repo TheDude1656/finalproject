@@ -2,10 +2,26 @@ import React, { Component } from 'react';
 import '../../App.css';
 import Jumbotron from "../../components/Jumbotron/Jumbotron";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 
 class App extends Component {
-
+    handleNewUser = (res) => {
+        axios({
+            method: 'post',
+            url: '/api/newtech',
+            data: {
+                name: 'techUserName',
+                email: 'techEmail',
+                password: 'techPassword'
+            }
+        });
+    };
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({ [name]: value });
+        console.log(event);
+    };
     render() {
         return (
             <div className="container">
@@ -19,7 +35,7 @@ class App extends Component {
                         name="username"
                         placeholder="Tech Username"
                         aria-label="Tech-Username"
-                    // onChange={this.handleInputChange}
+                        onChange={this.handleInputChange}
                     // value={this.state.username}
                     />
                 </div>
@@ -31,7 +47,7 @@ class App extends Component {
                         id="techEmail"
                         name="email"
                         placeholder="E-Mail"
-                    // onChange={this.handleInputChange}
+                        onChange={this.handleInputChange}
                     // value={this.state.password}
                     />
                 </div>
@@ -43,12 +59,15 @@ class App extends Component {
                         id="techPassword"
                         name="password"
                         placeholder="Password"
-                    // onChange={this.handleInputChange}
+                        onChange={this.handleInputChange}
                     // value={this.state.password}
                     />
                 </div>
                 <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Back</Link>
-                <Link to={`../LoggedIn`} className="btn btn-lg loginBtn btn-outline-success">Create</Link>
+                <Link to={`../LoggedIn`}
+                    className="btn btn-lg loginBtn btn-outline-success"
+                    onClick={this.handleNewUser}
+                >Create</Link>
 
             </div>
 
