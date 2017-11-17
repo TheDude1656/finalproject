@@ -4,9 +4,7 @@ const CustomerInfo = require('../models').CustomerInfo;
 module.exports = {
     create(req, res) {
         console.log(req);
-        
         return Customer
-
             .create({
                 customername: req.body.customername,
             })
