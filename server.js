@@ -7,14 +7,14 @@ const app = express();
 
 const db = require("./models");
 require('dotenv').config();
-//requiring routes
-require('./routes')(app);
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+
+//requiring routes
+require('./routes')(app);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
