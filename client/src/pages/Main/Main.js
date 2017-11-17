@@ -7,10 +7,7 @@ import LoginModal from "../../components/Modal/LoginModal";
 // import {ModalLogin} from "../../components/Modal";
 
 class App extends Component {
-    state = {
-        techName: "",
-        showModal: false
-    };
+
 
     render() {
         return (

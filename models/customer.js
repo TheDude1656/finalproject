@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        
     });
     Customer.associate = (models) => {
         Customer.hasMany(models.CustomerInfo, {

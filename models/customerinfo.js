@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         phone: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: true
         },
         contactName: {
@@ -16,6 +16,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: true
         },
+            customerId: {
+                type: DataTypes.STRING,
+                allowNull: false
+            }
+    
     });
 
     CustomerInfo.associate = (models) => {

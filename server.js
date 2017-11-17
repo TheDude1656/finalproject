@@ -29,7 +29,7 @@ app
 
 db
   .sequelize
-  .sync({ force: true })
+  .sync({})
   .then(function () {
 
     app

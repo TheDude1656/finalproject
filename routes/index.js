@@ -9,6 +9,6 @@ module.exports = (app) => {
     app.post('/api/customers', customerController.create);
     app.get('/api/customers', customerController.list);
 
-    app.post('/apit/customers/:customerId/info', customerInfoController.create);
+    app.post('/api/customers/:customerId/info', customerInfoController.create);
     app.get('/api/customers/:customerId', customerController.retrieve);
 };
