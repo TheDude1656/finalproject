@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class LoginModal extends Component {
 
@@ -9,24 +9,20 @@ class LoginModal extends Component {
         showModal: true
 
     };
-componentDidMount(){
-    this.setState({showModal: true});
-}
-    renderLoggedIn = event => {
+    componentDidMount() {
+        this.setState({ showModal: true });
+    }
+    verifyLogin = (user) => {
+        
+    }
+    renderLoggedIn = () => {
         console.log("hit");
         console.log(this.state)
-        let userCred = {
-            "username": this.state.username,
-            "password": this.state.password
-        }
         console.log("close");
-        this.setState({showModal: false});
-        
-        console.log(userCred)
-
+        this.setState({ showModal: false });
         if (this.state.username && this.state.password) {
             console.log("we did it!");
-
+            this.verifyLogin();
         } else {
             console.log("missing something");
         }
@@ -40,8 +36,8 @@ componentDidMount(){
         this.renderLoggedIn();
     };
     handleInputChange = event => {
-        const {name, value} = event.target;
-        this.setState({[name]: value});
+        const { name, value } = event.target;
+        this.setState({ [name]: value });
         console.log(this.state);
     };
 
@@ -75,7 +71,7 @@ componentDidMount(){
                                     placeholder="Tech Username"
                                     aria-label="Tech-Username"
                                     onChange={this.handleInputChange}
-                                    value={this.state.username}/>
+                                    value={this.state.username} />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="techPassword">Password</label>
@@ -86,7 +82,7 @@ componentDidMount(){
                                     name="password"
                                     placeholder="Password"
                                     onChange={this.handleInputChange}
-                                    value={this.state.password}/>
+                                    value={this.state.password} />
                             </div>
                         </div>
                         <div className="modal-footer">
