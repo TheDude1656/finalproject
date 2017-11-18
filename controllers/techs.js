@@ -10,7 +10,7 @@ module.exports = {
                 password: req.body.password
             })
             .then(tech => res.status(200).send(tech))
-            .cath(error => res.status(400).send(error));
+            .catch(error => res.status(400).send(error));
 
     }
 };
