@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import API from "../../utils/API";
 
 class LoginModal extends Component {
 
@@ -13,7 +14,14 @@ class LoginModal extends Component {
         this.setState({ showModal: true });
     }
     verifyLogin = (user) => {
-        
+        if (this.state.name && this.state.password) {
+            API.userLogin({
+                name: this.state.name,
+                password: this.state.password
+            })
+            .then(res => this.setState({ name: "", email: "", password: "" }))
+            .catch(err => console.log(err));
+        }
     }
     renderLoggedIn = () => {
         console.log("hit");

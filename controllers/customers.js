@@ -13,7 +13,11 @@ module.exports = {
     },
     list(req, res) {
         return Customer
-            .all()
+            .findAll({
+                include: [{
+                    model: CustomerInfo
+                }]
+            })
             .then(customers => res.status(200).send(customers))
             .catch(error => res.status(400).send(error));
     },

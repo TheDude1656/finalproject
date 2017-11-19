@@ -6,5 +6,11 @@ export default {
     },
     getUser: function() {
         return axios.get("/api/tech");
+    },
+    userLogin: function(loggedinuser) {
+        return axios.post("/loggedinuser", loggedinuser);
+    },
+    getCustomers: function() {
+        return axios.get("/api/customers");
     }
 };
