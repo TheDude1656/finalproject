@@ -31,7 +31,7 @@ class App extends Component {
             .catch(err => console.log(err));
     }
     insertCustomerInfo = event => {
-        event.preventDefault();
+        
         API
             .createNewCustomerInfo({
                 
