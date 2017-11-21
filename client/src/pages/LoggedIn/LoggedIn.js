@@ -1,16 +1,19 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import '../../App.css';
 import API from "../../utils/API";
 import Jumbotron from "../../components/Jumbotron/Jumbotron";
-import {ListItem, ListItemInfo} from "../../components/List";
-import {Link} from "react-router-dom";
+import { ListItem, ListItemInfo } from "../../components/List";
+import { Link } from "react-router-dom";
 
 class App extends Component {
 
     state = {
         customerArray: [],
         value: '',
-        selectedcustomer: {}
+        address: '',
+        phone: '',
+        contactname: '',
+        contactemail: ''
     };
     componentDidMount() {
         this.getAllCustomers();
@@ -21,23 +24,36 @@ class App extends Component {
         API
             .getCustomers()
             .then(res => {
-                this.setState({customerArray: res.data})
+                this.setState({ customerArray: res.data })
                 console.log(this.state)
             })
             .catch(err => console.log(err));
     }
     handleCustomerInfo = (event) => {
-        this.setState({value: event.target.value});
+        // this.handleCustomerState()
+        this.setState({
+            value: event.target.value,
+        });
+
         console.log("customer info will show");
     }
+    // handleCustomerState = () => {
+    //     {this.state.customerArray.map(custname => (
+    //         console.log("yay")
+    //     ))}
+    // }
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({ [name]: value });
+    };
 
     render() {
         return (
             <div className="container">
-            <Jumbotron />
+                <Jumbotron />
                 <p className="text-right">Logged In User:
                 </p>
-                
+
                 <div className="form-group">
 
                     <div className="form-control form-control-lg">
@@ -47,36 +63,38 @@ class App extends Component {
                             value={this.state.value}
                             className="form-control form-control-lg">
                             {this.state.customerArray.map(custname => (
-                                    <ListItem key={custname.customername}>
-                                        {custname.customername}
-                                    </ListItem>
-                                ))}
+                                <ListItem key={custname.customername}>
+                                    {custname.customername}
+                                </ListItem>
+                            ))}
+
                         </select>
                     </div>
 
                     <div className="form-control form-control-lg">
                         <label htmlFor="customerInfo">Customer Information</label>
-                        <ListItemInfo >
+                        <ListItemInfo>
                             <p>
-                                Customer Name: {this.state.value}
-                                <br/>
+                                Customer Name:
+                                    <br />
                                 Address:
-                                <br/>
+                                <br />
                                 Phone:
-                                <br/>
+                                <br />
                                 Contact Name:
-                                <br/>
+                                <br />
                                 Contact Email:
-                                <br/>
+                                <br />
                             </p>
                         </ListItemInfo>
+
                     </div>
 
                     <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Home</Link>
                     <Link to={`/NewCustomer`} className="btn btn-lg loginBtn btn-outline-primary">NewCustomer</Link>
 
                 </div>
-            </div>
+            </div >
         );
     };
 };

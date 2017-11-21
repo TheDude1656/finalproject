@@ -11,8 +11,8 @@ module.exports = {
                 email: req.body.email,
                 contactEmail: req.body.contactEmail,
                 contactPhone: req.body.contactPhone,
-                addedBy: req.body.addedBy,
-                customerId: req.params.customerId 
+                addedBy: req.body.addedBy
+                 
             })
             .then(customerInfo=> res.status(201).send(customerInfo))
             .catch(error =>res.status(400).send(error));

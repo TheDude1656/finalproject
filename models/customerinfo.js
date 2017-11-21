@@ -27,17 +27,13 @@ module.exports = (sequelize, DataTypes) => {
         addedBy: {
             type: DataTypes.STRING,
             allowNull: true
-        },
-        customerId: {
-            type: DataTypes.STRING,
-            allowNull: false
         }
-
     });
 
     CustomerInfo.associate = (models) => {
         CustomerInfo.belongsTo(models.Customer, {
-            foreignKey: 'customerId',
+            foreignKey: 'fk_customer',
+            constraints: false,
             onDelete: 'CASCADE'
         });
     };
