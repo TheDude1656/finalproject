@@ -12,5 +12,11 @@ export default {
     },
     getCustomers: function() {
         return axios.get("/api/customers");
+    },
+    createNewCustomer: function (newCustomer) {
+        return axios.post("/api/customers", newCustomer);
+    },
+    createNewCustomerInfo: function (newCustomerInfo) {
+        return axios.post("/api/customers/:customerId/info", newCustomerInfo);
     }
 };

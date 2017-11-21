@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: true
         },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
         contactName: {
             type: DataTypes.STRING,
             allowNull: true
@@ -16,17 +20,25 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: true
         },
-            customerId: {
-                type: DataTypes.STRING,
-                allowNull: false
-            }
-    
+        contactPhone: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        addedBy: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        customerId: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
+
     });
 
     CustomerInfo.associate = (models) => {
         CustomerInfo.belongsTo(models.Customer, {
             foreignKey: 'customerId',
-            onDelete: 'CASCADE',
+            onDelete: 'CASCADE'
         });
     };
 

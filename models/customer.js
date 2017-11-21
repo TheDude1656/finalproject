@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
         customername: {
             type: DataTypes.STRING,
             allowNull: false,
-        },
+        }
         
     });
     Customer.associate = (models) => {

@@ -2,18 +2,67 @@ import React, {Component} from 'react';
 import '../../App.css';
 import Jumbotron from "../../components/Jumbotron/Jumbotron";
 import {Link} from "react-router-dom";
-// import API from "../../utils/API";
+import API from "../../utils/API";
 
 class App extends Component {
     state = {
         customername: "",
         customeraddress: "",
         contactname: "",
+        contactEmail: "",
         contactphone: "",
         customeremail: "",
         customerphone: "",
         insertedby: ""
     }
+    loadNewCustomer = () => {
+        API
+            .getCustomers()
+            .then(res => this.setState({
+                customername: "",
+                customeraddress: "",
+                contactEmail: "",
+                contactname: "",
+                contactphone: "",
+                customeremail: "",
+                customerphone: "",
+                insertedby: ""
+            }))
+            .catch(err => console.log(err));
+    }
+    insertCustomerInfo = event => {
+        event.preventDefault();
+        API
+            .createNewCustomerInfo({
+                
+                    address: this.state.customeraddress,
+                    phone: this.state.customerphone,
+                    email: this.state.customeremail,
+                    contactName: this.state.contactname,
+                    contactEmail: this.state.contactEmail,
+                    contactPhone: this.state.contactphone,
+                    addedBy: this.state.insertedby
+            })
+            .then(res => this.loadNewCustomer())
+            .catch(err => console.log(err));
+    }
+    handleNewCustomer = event => {
+        event.preventDefault();
+        console.log(this.state);
+        API
+            .createNewCustomer({
+            customername: this.state.customername
+                      
+        })
+            .then(res => this.insertCustomerInfo())
+            .catch(err => console.log(err));
+
+    };
+
+    handleInputChange = event => {
+        const {name, value} = event.target;
+        this.setState({[name]: value});
+    };
 
     render() {
         return (
@@ -36,12 +85,23 @@ class App extends Component {
                     <input
                         type="text"
                         className="form-control"
-                        id="phone"
-                        name="phone"
+                        id="customerphone"
+                        name="customerphone"
                         placeholder="Phone Number"
                         onChange={this.handleInputChange}
                         value={this.state.customerphone}/>
                 </div>
+                <div className="form-group">
+                <label htmlFor="customeremail">Customer's Email</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    id="customeremail"
+                    name="customeremail"
+                    placeholder="Customer's Email"
+                    onChange={this.handleInputChange}
+                    value={this.state.customeremail}/>
+            </div>
                 <div className="form-group">
                     <label htmlFor="customeraddress">Customer's Address</label>
                     <input
@@ -75,6 +135,17 @@ class App extends Component {
                         onChange={this.handleInputChange}
                         value={this.state.contactphone}/>
                 </div>
+                <div className="form-group">
+                <label htmlFor="contactEmail">Contact's Email</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    id="contactEmail"
+                    name="contactEmail"
+                    placeholder="Contact's Phone"
+                    onChange={this.handleInputChange}
+                    value={this.state.contactEmail}/>
+            </div>
                 <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Back</Link>
                 <Link
                     to={`../LoggedIn`}

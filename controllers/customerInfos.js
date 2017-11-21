@@ -7,8 +7,11 @@ module.exports = {
             .create({
                 address: req.body.address,
                 phone: req.body.phone,
-                contactName: req.body.constactName,
+                contactName: req.body.contactName,
+                email: req.body.email,
                 contactEmail: req.body.contactEmail,
+                contactPhone: req.body.contactPhone,
+                addedBy: req.body.addedBy,
                 customerId: req.params.customerId 
             })
             .then(customerInfo=> res.status(201).send(customerInfo))
