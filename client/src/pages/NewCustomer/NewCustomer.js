@@ -146,7 +146,7 @@ class App extends Component {
                     onChange={this.handleInputChange}
                     value={this.state.contactEmail}/>
             </div>
-                <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Back</Link>
+                <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Home</Link>
                 <Link
                     to={`../LoggedIn`}
                     className="btn btn-lg loginBtn btn-outline-success"

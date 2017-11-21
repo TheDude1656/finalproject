@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../../App.css';
 import API from "../../utils/API";
+import Jumbotron from "../../components/Jumbotron/Jumbotron";
 import {ListItem, ListItemInfo} from "../../components/List";
 import {Link} from "react-router-dom";
 
@@ -33,8 +34,10 @@ class App extends Component {
     render() {
         return (
             <div className="container">
+            <Jumbotron />
                 <p className="text-right">Logged In User:
                 </p>
+                
                 <div className="form-group">
 
                     <div className="form-control form-control-lg">
@@ -70,7 +73,7 @@ class App extends Component {
                     </div>
 
                     <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Home</Link>
-                    <Link to={`/completedform`} className="btn btn-lg loginBtn btn-outline-primary">Submit</Link>
+                    <Link to={`/NewCustomer`} className="btn btn-lg loginBtn btn-outline-primary">NewCustomer</Link>
 
                 </div>
             </div>
