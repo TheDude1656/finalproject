@@ -12,7 +12,7 @@ module.exports = (app) => {
     app.get('/api/customers', customerController.list);
 
     //specific customer posting and getting
-    app.post('/api/customers/:id/info', customerInfoController.create);
+    app.post('/api/customers/info', customerInfoController.create);
     app.get('/api/customers/:id', customerController.retrieve);
 
     //login and creating of technicians

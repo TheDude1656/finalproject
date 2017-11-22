@@ -9,6 +9,7 @@ class App extends Component {
 
     state = {
         customerArray: [],
+        selectedCustomer: [],
         value: '',
         address: '',
         phone: '',
@@ -30,18 +31,21 @@ class App extends Component {
             .catch(err => console.log(err));
     }
     handleCustomerInfo = (event) => {
-        // this.handleCustomerState()
+        
         this.setState({
             value: event.target.value,
-        });
+        })
+        this.handleCustomerState()
 
         console.log("customer info will show");
     }
-    // handleCustomerState = () => {
-    //     {this.state.customerArray.map(custname => (
-    //         console.log("yay")
-    //     ))}
-    // }
+    handleCustomerState = () => {
+        const person =this.state.customerArray.find(c=>c.customername === this.state.value)
+       console.log(person)
+        this.setState({selectedCustomer: person}) 
+    
+
+    }
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({ [name]: value });
@@ -75,15 +79,15 @@ class App extends Component {
                         <label htmlFor="customerInfo">Customer Information</label>
                         <ListItemInfo>
                             <p>
-                                Customer Name:
-                                    <br />
-                                Address:
+                                Customer Name: {this.state.customername}
                                 <br />
-                                Phone:
+                                Address:{this.state.address}
                                 <br />
-                                Contact Name:
+                                Phone:{this.state.phone}
                                 <br />
-                                Contact Email:
+                                Contact Name:{this.state.contactname}
+                                <br />
+                                Contact Email:{this.state.contactemail}
                                 <br />
                             </p>
                         </ListItemInfo>

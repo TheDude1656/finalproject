@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import '../../App.css';
 import Jumbotron from "../../components/Jumbotron/Jumbotron";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import API from "../../utils/API";
 
 class App extends Component {
@@ -13,7 +13,8 @@ class App extends Component {
         contactphone: "",
         customeremail: "",
         customerphone: "",
-        insertedby: ""
+        insertedby: "",
+        customerId: -1
     }
     loadNewCustomer = () => {
         API
@@ -30,18 +31,19 @@ class App extends Component {
             }))
             .catch(err => console.log(err));
     }
-    insertCustomerInfo = event => {
-        
+    insertCustomerInfo = customerId => {
+
         API
             .createNewCustomerInfo({
-                
-                    address: this.state.customeraddress,
-                    phone: this.state.customerphone,
-                    email: this.state.customeremail,
-                    contactName: this.state.contactname,
-                    contactEmail: this.state.contactEmail,
-                    contactPhone: this.state.contactphone,
-                    addedBy: this.state.insertedby
+
+                address: this.state.customeraddress,
+                phone: this.state.customerphone,
+                email: this.state.customeremail,
+                contactName: this.state.contactname,
+                contactEmail: this.state.contactEmail,
+                contactPhone: this.state.contactphone,
+                addedBy: this.state.insertedby,
+                customerId: customerId
             })
             .then(res => this.loadNewCustomer())
             .catch(err => console.log(err));
@@ -51,23 +53,28 @@ class App extends Component {
         console.log(this.state);
         API
             .createNewCustomer({
-            customername: this.state.customername
-                      
-        })
-            .then(res => this.insertCustomerInfo())
+                customername: this.state.customername
+
+            })
+            .then(res => {
+                
+                this.insertCustomerInfo(res.data.id)
+                
+            }
+            )
             .catch(err => console.log(err));
 
     };
 
     handleInputChange = event => {
-        const {name, value} = event.target;
-        this.setState({[name]: value});
+        const { name, value } = event.target;
+        this.setState({ [name]: value });
     };
 
     render() {
         return (
             <div className="container">
-                <Jumbotron/>
+                <Jumbotron />
                 <div className="form-group">
                     <label htmlFor="name">Customer Name</label>
                     <input
@@ -78,7 +85,7 @@ class App extends Component {
                         placeholder="Customer Name"
                         aria-label="Customer Name"
                         onChange={this.handleInputChange}
-                        value={this.state.customername}/>
+                        value={this.state.customername} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="customerphone">Customer's Phone</label>
@@ -89,19 +96,19 @@ class App extends Component {
                         name="customerphone"
                         placeholder="Phone Number"
                         onChange={this.handleInputChange}
-                        value={this.state.customerphone}/>
+                        value={this.state.customerphone} />
                 </div>
                 <div className="form-group">
-                <label htmlFor="customeremail">Customer's Email</label>
-                <input
-                    type="text"
-                    className="form-control"
-                    id="customeremail"
-                    name="customeremail"
-                    placeholder="Customer's Email"
-                    onChange={this.handleInputChange}
-                    value={this.state.customeremail}/>
-            </div>
+                    <label htmlFor="customeremail">Customer's Email</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="customeremail"
+                        name="customeremail"
+                        placeholder="Customer's Email"
+                        onChange={this.handleInputChange}
+                        value={this.state.customeremail} />
+                </div>
                 <div className="form-group">
                     <label htmlFor="customeraddress">Customer's Address</label>
                     <input
@@ -111,7 +118,7 @@ class App extends Component {
                         name="customeraddress"
                         placeholder="Customer's Address"
                         onChange={this.handleInputChange}
-                        value={this.state.customeraddress}/>
+                        value={this.state.customeraddress} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="contactname">Contact Name</label>
@@ -122,7 +129,7 @@ class App extends Component {
                         name="contactname"
                         placeholder="Contact's Name"
                         onChange={this.handleInputChange}
-                        value={this.state.contactname}/>
+                        value={this.state.contactname} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="contactphone">Contact's Phone</label>
@@ -133,19 +140,19 @@ class App extends Component {
                         name="contactphone"
                         placeholder="Contact's Phone"
                         onChange={this.handleInputChange}
-                        value={this.state.contactphone}/>
+                        value={this.state.contactphone} />
                 </div>
                 <div className="form-group">
-                <label htmlFor="contactEmail">Contact's Email</label>
-                <input
-                    type="text"
-                    className="form-control"
-                    id="contactEmail"
-                    name="contactEmail"
-                    placeholder="Contact's Phone"
-                    onChange={this.handleInputChange}
-                    value={this.state.contactEmail}/>
-            </div>
+                    <label htmlFor="contactEmail">Contact's Email</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="contactEmail"
+                        name="contactEmail"
+                        placeholder="Contact's Phone"
+                        onChange={this.handleInputChange}
+                        value={this.state.contactEmail} />
+                </div>
                 <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Back</Link>
                 <Link
                     to={`../LoggedIn`}

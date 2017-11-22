@@ -11,7 +11,8 @@ module.exports = {
                 email: req.body.email,
                 contactEmail: req.body.contactEmail,
                 contactPhone: req.body.contactPhone,
-                addedBy: req.body.addedBy
+                addedBy: req.body.addedBy,
+                customerId: req.body.customerId
                  
             })
             .then(customerInfo=> res.status(201).send(customerInfo))

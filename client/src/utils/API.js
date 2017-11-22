@@ -17,6 +17,6 @@ export default {
         return axios.post("/api/customers", newCustomer);
     },
     createNewCustomerInfo: function (newCustomerInfo) {
-        return axios.post("/api/customers/:id/info", newCustomerInfo);
+        return axios.post("/api/customers/info", newCustomerInfo);
     }
 };

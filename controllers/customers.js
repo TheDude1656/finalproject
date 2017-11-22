@@ -3,7 +3,7 @@ const CustomerInfo = require('../models').CustomerInfo;
 
 module.exports = {
     create(req, res) {
-        // console.log(req);
+        console.log(req.body);
         return Customer
             .create({
                 customername: req.body.customername,
