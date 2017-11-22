@@ -17,6 +17,7 @@ class App extends Component {
         contactemail: ''
     };
     componentDidMount() {
+
         this.getAllCustomers();
 
     }
@@ -31,21 +32,22 @@ class App extends Component {
             .catch(err => console.log(err));
     }
     handleCustomerInfo = (event) => {
+        // const person = this.state.customerArray.find(customer => customer.customername === this.state.value)
         
         this.setState({
-            value: event.target.value,
+            value: event.target.value
+
         })
-        this.handleCustomerState()
+        // this.handleCustomerState()
 
         console.log("customer info will show");
     }
-    handleCustomerState = () => {
-        const person =this.state.customerArray.find(c=>c.customername === this.state.value)
-       console.log(person)
-        this.setState({selectedCustomer: person}) 
-    
+    // handleCustomerState = () => {
+    //        this.setState({ 
+    //         selectedCustomer: person
+    //     })
+    // }
 
-    }
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({ [name]: value });
@@ -66,6 +68,7 @@ class App extends Component {
                             onChange={this.handleCustomerInfo}
                             value={this.state.value}
                             className="form-control form-control-lg">
+                            <option>Select or Find Customer</option>
                             {this.state.customerArray.map(custname => (
                                 <ListItem key={custname.customername}>
                                     {custname.customername}
