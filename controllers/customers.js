@@ -23,7 +23,7 @@ module.exports = {
     },
     retrieve(req, res) {
         return Customer
-            .findById(req.params.fk_customer, {
+            .findById(req.params.id, {
                 include: [{
                     model: CustomerInfo
                 }]

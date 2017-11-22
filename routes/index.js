@@ -12,8 +12,8 @@ module.exports = (app) => {
     app.get('/api/customers', customerController.list);
 
     //specific customer posting and getting
-    app.post('/api/customers', customerInfoController.create);
-    app.get('/api/customers', customerController.retrieve);
+    app.post('/api/customers/:id/info', customerInfoController.create);
+    app.get('/api/customers/:id', customerController.retrieve);
 
     //login and creating of technicians
     app.post('/api/tech', techController.create);

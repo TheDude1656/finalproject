@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
 
     CustomerInfo.associate = (models) => {
         CustomerInfo.belongsTo(models.Customer, {
-            foreignKey: 'fk_customer',
+            foreignKey: 'id',
             constraints: false,
             onDelete: 'CASCADE'
         });
