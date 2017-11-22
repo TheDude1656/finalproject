@@ -97,7 +97,7 @@ class App extends Component {
                         value={this.state.password2}
                     />
                 </div>
-                <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Back</Link>
+                <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Home</Link>
                 <Link to={`../LoggedIn`}
                     className="btn btn-lg loginBtn btn-outline-success"
                     onClick={this.handleNewUser}

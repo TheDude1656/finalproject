@@ -29,9 +29,14 @@ module.exports = {
             });
     },
     retrieve(req, res) {
+        console.log("hit validation")
         return Tech
         .findById(req.params.name)
-        .then(customer => res.status(201).send(customer))
+        .then(tech => {
+            
+            validateHash(tech)
+            res.status(201).send(tech)
+        })
         .catch(error => res.status(400).send(error));
 
     }

@@ -7,6 +7,7 @@ import LoggedIn from "./pages/LoggedIn";
 import Complete from "./pages/Complete";
 import NewCustomer from "./pages/NewCustomer";
 import LogIn from "./pages/LogIn";
+import NewTicket from "./pages/NewTicket";
 
 
 const App = () =>
@@ -18,6 +19,7 @@ const App = () =>
         <Route exact path="/NewCustomer" component={NewCustomer} />
         <Route exact path="/login" component={LogIn} />
         <Route exact path="/loggedin" component={LoggedIn} />
+        <Route exact path="/newticket" component={NewTicket} />
         <Route exact path="/completedform" component={Complete} />
         <Route component={NoMatch} />
       </Switch>

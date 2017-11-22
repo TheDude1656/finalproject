@@ -45,12 +45,16 @@ class App extends Component {
                 addedBy: this.state.insertedby,
                 customerId: customerId
             })
-            .then(res => this.loadNewCustomer())
+            .then(res => {
+                alert("New Customer Created, Go back to start ticket!");
+                this.loadNewCustomer()
+            })
             .catch(err => console.log(err));
     }
     handleNewCustomer = event => {
         event.preventDefault();
         console.log(this.state);
+        
         API
             .createNewCustomer({
                 customername: this.state.customername
@@ -153,11 +157,12 @@ class App extends Component {
                         onChange={this.handleInputChange}
                         value={this.state.contactEmail} />
                 </div>
-                <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Back</Link>
+                <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Home</Link>
                 <Link
                     to={`../LoggedIn`}
                     className="btn btn-lg loginBtn btn-outline-success"
                     onClick={this.handleNewCustomer}>Create</Link>
+                <Link to={`/LoggedIn`} className="btn btn-lg loginBtn btn-outline-danger">Back</Link>
 
             </div>
 

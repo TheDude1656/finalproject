@@ -1,0 +1,56 @@
+import React, { Component } from 'react';
+import '../../App.css';
+
+import SmallJumbo from "../../components/SmallJumbo/SmallJumbo";
+import {ListItemInfo} from "../../components/List/ListItemInfo";
+import { Link } from "react-router-dom";
+
+class App extends Component {
+
+    state = {
+        
+    };
+    componentDidMount() {
+
+            }
+  
+
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({ [name]: value });
+    };
+
+    render() {
+        return (
+            <div className="container">
+                <SmallJumbo />
+                <p className="text-right">Logged In User:
+                </p>
+<div className="form-group">
+                <div className="form-control form-control-lg">
+                        <label htmlFor="customerInfo">Selected Customer Information</label>
+                        <ListItemInfo>
+                            <p>
+                                Customer Name: {this.state.customername}
+                                <br />
+                                Address:{this.state.address}
+                                <br />
+                                Phone:{this.state.phone}
+                                <br />
+                                Contact Name:{this.state.contactname}
+                                <br />
+                                Contact Email:{this.state.contactemail}
+                                <br />
+                            </p>
+                        </ListItemInfo>
+</div>
+                    </div>
+                    <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Home</Link>
+                    <Link to={`/newticket2`} className="btn btn-lg loginBtn btn-outline-danger float-right">Next</Link>
+                </div>
+            
+        );
+    };
+};
+
+export default App;

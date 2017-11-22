@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import Jumbotron from "../../components/Jumbotron/Jumbotron";
 
+
 class LogIn extends Component {
 
     state = {
@@ -10,7 +11,7 @@ class LogIn extends Component {
         password: ""
     };
     componentDidMount() {
-        this.setState({ showModal: true });
+        
     }
     verifyLogin = (user) => {
         if (this.state.name && this.state.password) {
@@ -18,14 +19,17 @@ class LogIn extends Component {
                 name: this.state.name,
                 password: this.state.password
             })
-                .then(res => this.setState({ name: "", email: "", password: "" }))
+                .then(res => {
+                    
+                    this.setState({ name: "", email: "", password: "" })
+                })
                 .catch(err => console.log(err));
         }
     }
     renderLoggedIn = () => {
         console.log("hit");
         console.log(this.state)
-        console.log("close");
+        window.location = "/loggedin";
 
         if (this.state.username && this.state.password) {
             console.log("we did it!");
@@ -34,6 +38,7 @@ class LogIn extends Component {
             console.log("missing something");
         }
     };
+    
 
     handleLogin = event => {
         event.preventDefault();
@@ -45,7 +50,7 @@ class LogIn extends Component {
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({ [name]: value });
-        console.log(this.state);
+        
     };
     showHide = () => {
         const showhidepass = document.getElementById('techPassword');
@@ -107,6 +112,7 @@ class LogIn extends Component {
                                 <Link to={`../NewTech`} className="btn btn-lg loginBtn btn-outline-success">New Tech</Link>
 
                                 <Link to={`../LoggedIn`} className="btn btn-lg loginBtn btn-outline-primary" onClick={this.handleLogin}>Login</Link>
+                            <Link to={'/'} className="btn btn-lg loginBtn btn-outline-danger">Home</Link>
                             </div>
                         </div>
                     </div>
