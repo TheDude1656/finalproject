@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import '../../App.css';
+import { Link } from "react-router-dom";
 import Jumbotron from "../../components/Jumbotron/Jumbotron";
-import Login from "../../components/Login/Login";
+
 import NewTech from "../../components/NewTech/NewTech";
-import LoginModal from "../../components/Modal/LoginModal";
-// import {ModalLogin} from "../../components/Modal";
+
 
 class App extends Component {
 
@@ -14,9 +14,10 @@ class App extends Component {
 
             <div className="container">
                 <Jumbotron/>
-                <Login/>
+                <Link to={`/login`} className="btn btn-lg loginBtn btn-outline-primary col">Login</Link>
+                <br /><br />
                 <NewTech/>
-                <LoginModal/>
+                
                 
             </div>
 

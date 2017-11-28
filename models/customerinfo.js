@@ -29,15 +29,15 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true
         },
         customerId: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false
         }
-
     });
 
     CustomerInfo.associate = (models) => {
         CustomerInfo.belongsTo(models.Customer, {
             foreignKey: 'customerId',
+            constraints: false,
             onDelete: 'CASCADE'
         });
     };

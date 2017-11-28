@@ -1,8 +1,5 @@
 .landing {
     margin-top: 5vh;
-    background-image: url("./scales.jpg");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
     filter: grayscale(80%);
     text-align: center;
     text-shadow: 0 5px 10px rgb(255, 255, 255);
@@ -11,6 +8,9 @@
 }
 
 .landingtext {
-    
-    top: 50%;
+        top: 50%;
+}
+.background {
+    padding: 0px;
+    background: rgb(104, 104, 104);
 }

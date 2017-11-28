@@ -3,7 +3,7 @@ const CustomerInfo = require('../models').CustomerInfo;
 
 module.exports = {
     create(req, res) {
-        console.log(req);
+        console.log(req.body);
         return Customer
             .create({
                 customername: req.body.customername,
@@ -23,7 +23,7 @@ module.exports = {
     },
     retrieve(req, res) {
         return Customer
-            .findById(req.params.customerId, {
+            .findById(req.params.id, {
                 include: [{
                     model: CustomerInfo
                 }]

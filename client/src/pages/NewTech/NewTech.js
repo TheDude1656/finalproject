@@ -10,29 +10,34 @@ class App extends Component {
     state = {
         name: "",
         email: "",
-        password: ""
+        password: "",
+        password2: ""
     }
     componentDidMount() {
         this.loadNewUser();
     }
     loadNewUser = () => {
         API.getUser()
-            .then(res => this.setState({ name: "", email: "", password: "" }))
+            .then(res => this.setState({ name: "", email: "", password: "", password2: "" }))
             .catch(err => console.log(err));
     }
     handleNewUser = event => {
-        event.preventDefault();
         console.log(this.state);
-        if (this.state.name && this.state.email && this.state.password) {
-            API.createNewTech({
-                name: this.state.name,
-                email: this.state.name,
-                password: this.state.password
-            })
-                .then(res => this.loadNewUser())
-                .catch(err => console.log(err));
-        };
-
+        if (this.state.password === this.state.password2) {
+            if (this.state.name && this.state.email && this.state.password) {
+                API.createNewTech({
+                    name: this.state.name,
+                    email: this.state.name,
+                    password: this.state.password
+                })
+                    .then(res => this.loadNewUser())
+                    .catch(err => console.log(err));
+            }
+        } else {
+            event.preventDefault();
+            alert("Passwords do not match!")
+            this.loadNewUser();
+        }
     };
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -79,7 +84,20 @@ class App extends Component {
                         value={this.state.password}
                     />
                 </div>
-                <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Back</Link>
+
+                <div className="form-group">
+                    <label htmlFor="password2">Verify Password</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        id="password2"
+                        name="password2"
+                        placeholder="Password Again"
+                        onChange={this.handleInputChange}
+                        value={this.state.password2}
+                    />
+                </div>
+                <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Home</Link>
                 <Link to={`../LoggedIn`}
                     className="btn btn-lg loginBtn btn-outline-success"
                     onClick={this.handleNewUser}

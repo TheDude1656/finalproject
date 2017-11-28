@@ -1,11 +1,12 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import Jumbotron from "../../components/Jumbotron/Jumbotron";
 
 const NoMatch = () =>
   
         
-        <body>
+        
+          <div className="container">
           <Jumbotron />
           <h1>404 Page Not Found</h1>
           <h1>
@@ -13,7 +14,9 @@ const NoMatch = () =>
               🙄
             </span>
           </h1>
-          </body>;
+          <Link to={'/'} className="btn btn-lg loginBtn btn-outline-primary">Home</Link>
+          </div>
+          ;
         
 
 export default NoMatch;
