@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
-var SignaturePad = require('react-signature-pad');
+import SignaturePad from "react-signature-pad";
+// var SignaturePad = require('react-signature-pad');
 
 class App extends Component {
 
@@ -8,12 +9,10 @@ class App extends Component {
         return (
 
             <div>
-                done
-                <SignaturePad
-                clearButton = "true"
-                ref="signature"
-                 />
-                <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Home</Link>
+                <div className="container">
+                    <SignaturePad clearButton="true" ref="signature"/>
+                    <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Home</Link>
+                </div>
             </div>
         );
     };
