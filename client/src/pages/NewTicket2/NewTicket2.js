@@ -46,7 +46,7 @@ class App extends Component {
 </div>
                     </div>
                     <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Home</Link>
-                    <Link to={`/completedform`} className="btn btn-lg loginBtn btn-outline-danger float-right">Next</Link>
+                    <Link to={`/newticket2`} className="btn btn-lg loginBtn btn-outline-danger float-right">Next</Link>
                 </div>
             
         );
