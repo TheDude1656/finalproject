@@ -27,7 +27,7 @@ class App extends Component {
             if (this.state.name && this.state.email && this.state.password) {
                 API.createNewTech({
                     name: this.state.name,
-                    email: this.state.name,
+                    email: this.state.email,
                     password: this.state.password
                 })
                     .then(res => this.loadNewUser())
@@ -36,7 +36,7 @@ class App extends Component {
         } else {
             event.preventDefault();
             alert("Passwords do not match!")
-            this.loadNewUser();
+            
         }
     };
     handleInputChange = event => {

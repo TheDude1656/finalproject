@@ -8,6 +8,7 @@ class LogIn extends Component {
 
     state = {
         username: "",
+        email: "",
         password: ""
     };
     componentDidMount() {
@@ -27,9 +28,9 @@ class LogIn extends Component {
         }
     }
     renderLoggedIn = () => {
-        console.log("hit");
+        // console.log("hit");
         console.log(this.state)
-        window.location = "/loggedin";
+        // window.location = "/loggedin";
 
         if (this.state.username && this.state.password) {
             console.log("we did it!");
