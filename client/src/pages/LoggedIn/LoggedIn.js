@@ -17,7 +17,7 @@ class App extends Component {
         contactname: '',
         contactemail: ''
     };
-    
+
     componentDidMount() {
 
         this.getAllCustomers()
@@ -29,32 +29,31 @@ class App extends Component {
             .getCustomers()
             .then(res => {
                 this.setState({ customerArray: res.data })
-                console.log(res.data)
-                this.handleCustomerState()
+                console.log(this.state.customerArray)
+
             })
             .catch(err => console.log(err));
     }
-    handleCustomerInfo = (event) => {
-        // const person = this.state.customerArray.find(customer => customer.customername === this.state.value)
+    handleCustomerInfo = event => {
+
+      
+            const person = this.state.customerArray.find(customer => customer.customername === event.target.value)
+            this.setState({
+                value: event.target.value,
+                customername: event.target.value,
+                address: person.CustomerInfos[0].address,
+                phone: person.CustomerInfos[0].phone,
+                contactname: person.CustomerInfos[0].contactName,
+                contactemail: person.CustomerInfos[0].contactEmail
+            }, () => {
+                console.log(this.state)
+            })
+            
         
-        this.setState({
-            value: event.target.value,
-            address: this.state.customerArray[0].CustomerInfos[0].address,
-            phone: this.state.customerArray[0].CustomerInfos[0].phone,
-            contactname: this.state.customerArray[0].CustomerInfos[0].contactName,
-            contactemail: this.state.customerArray[0].CustomerInfos[0].contactEmail
 
-        })
-        // this.handleCustomerState()
+      
 
-        console.log("customer info will show");
     }
-    // handleCustomerState = () => {
-    //       console.log("we made it to custstate")
-    //       console.log(this.state.customerArray[0].CustomerInfos[0].address)
-    //       this.setState({address: this.state.customerArray[0].CustomerInfos[0].address})
-         
-    // }
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -84,7 +83,7 @@ class App extends Component {
                             ))}
 
                         </select>
-                </div>
+                    </div>
                     <div className="form-control form-control-lg">
                         <label htmlFor="customerInfo">Customer Information</label>
                         <ListItemInfo>
