@@ -8,8 +8,9 @@ function generateHash(tech) {
 }
 
 function validateHash(tech) {
-    console.log(tech.password)
+    // console.log(tech)
     return tech.password = bcrypt.compareSync(tech.password, this.password);
+    
 }
 
 
@@ -21,6 +22,7 @@ module.exports = {
                 name: req.body.name,
                 email: req.body.email,
                 password: req.body.password
+                
             })
             .then(tech => res.status(200).send(tech))
             .catch(error => {
@@ -31,9 +33,13 @@ module.exports = {
     retrieve(req, res) {
         console.log("hit validation")
         return Tech
-        .findById(req.params.name)
+        .findAll({
+            where: {
+                name: req.params.username
+            }
+        })
         .then(tech => {
-            
+            // console.log(tech)
             validateHash(tech)
             res.status(201).send(tech)
         })

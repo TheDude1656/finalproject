@@ -15,21 +15,19 @@ class LogIn extends Component {
         
     }
     verifyLogin = (user) => {
+        console.log(this.state)
         if (this.state.name && this.state.password) {
             API.userLogin({
                 name: this.state.name,
                 password: this.state.password
             })
-                .then(res => {
-                    
-                    this.setState({ name: "", email: "", password: "" })
-                })
+                .then(res => console.log("verifying login"))
                 .catch(err => console.log(err));
         }
     }
     renderLoggedIn = () => {
         // console.log("hit");
-        console.log(this.state)
+        
         // window.location = "/loggedin";
 
         if (this.state.username && this.state.password) {
