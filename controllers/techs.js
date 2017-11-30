@@ -8,14 +8,16 @@ function generateHash(tech) {
     return tech.password = bcrypt.hashSync(tech.password, bcrypt.genSaltSync(5));
 }
 
-function validateHash(tech) {
+function validateHash(tech, req) {
     // console.log(tech[0].dataValues.password);
-    
-    if(bcrypt.compareSync(tech.password, this.password)) {
-        console.log("success!");
-    } else {
-        console.log("incorrect password!");
-    }
+    console.log(tech.password)
+    console.log(req)
+    bcrypt.compareSync(tech.password, tech.body.password, (err, matched) => {
+        if (err) return res.json({error: 'Compare failed.'});
+        if (!matched) return res.json({error: 'Invalid password.'});
+        if (matched) return res.json('success!');
+    });
+  
     // return tech.password = bcrypt.compareSync(tech.password, this.password);
     
 }
@@ -33,7 +35,7 @@ module.exports = {
                 name: req.body.name,
                 email: req.body.email,
                 password: req.body.password
-                
+
             })
             .then(tech => res.status(200).send(tech))
             .catch(error => {
@@ -54,12 +56,10 @@ module.exports = {
             res.status(201).send(tech)
         })
         .catch(error => res.status(400).send(error));
-
     },
     verify(req, res) {
         console.log(req.body)
         validateHash(req.body)
         
-     
     }
 };
