@@ -2,16 +2,27 @@ const Tech = require('../models').Tech;
 const bcrypt = require('bcrypt');
 
 
+
 function generateHash(tech) {
     console.log(tech.password)
     return tech.password = bcrypt.hashSync(tech.password, bcrypt.genSaltSync(5));
 }
 
 function validateHash(tech) {
-    // console.log(tech)
-    return tech.password = bcrypt.compareSync(tech.password, this.password);
+    // console.log(tech[0].dataValues.password);
+    
+    if(bcrypt.compareSync(tech.password, this.password)) {
+        console.log("success!");
+    } else {
+        console.log("incorrect password!");
+    }
+    // return tech.password = bcrypt.compareSync(tech.password, this.password);
     
 }
+// function getDbHash() {
+//     let dbUserHash = "";
+
+// }
 
 
 module.exports = {
@@ -39,11 +50,16 @@ module.exports = {
             }
         })
         .then(tech => {
-            // console.log(tech)
-            validateHash(tech)
+            console.log(tech)
             res.status(201).send(tech)
         })
         .catch(error => res.status(400).send(error));
 
+    },
+    verify(req, res) {
+        console.log(req.body)
+        validateHash(req.body)
+        
+     
     }
 };

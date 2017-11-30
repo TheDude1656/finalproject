@@ -15,15 +15,25 @@ class LogIn extends Component {
         
     }
     verifyLogin = (user) => {
-        console.log(this.state)
-        if (this.state.name && this.state.password) {
+        // console.log(this.state)
+        
             API.userLogin({
-                name: this.state.name,
+                username: this.state.username,
                 password: this.state.password
             })
-                .then(res => console.log("verifying login"))
+                .then(user => {
+                    
+                    this.checkLogin()
+                })
                 .catch(err => console.log(err));
-        }
+        
+    }
+    checkLogin = () => {
+        API.userLoginVerify({
+            username: this.state.username,
+            password: this.state.password
+        })
+       
     }
     renderLoggedIn = () => {
         // console.log("hit");

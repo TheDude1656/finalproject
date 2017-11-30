@@ -10,6 +10,9 @@ export default {
     userLogin: function(loggedinuser) {
         return axios.get("/loggedinuser", loggedinuser);
     },
+    userLoginVerify: function(logInTech) {
+        return axios.post("/loggedinuser", logInTech);
+    },
     getCustomers: function() {
         return axios.get("/api/customers");
     },

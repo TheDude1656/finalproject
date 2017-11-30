@@ -2,6 +2,7 @@ const customerController = require('../controllers').customers;
 const customerInfoController = require('../controllers').customerInfos;
 const techController = require('../controllers').techs;
 
+
 module.exports = (app) => {
 
     // api customers root
@@ -18,5 +19,6 @@ module.exports = (app) => {
     //login and creating of technicians
     app.post('/api/tech', techController.create);
     app.get('/loggedinuser/:username', techController.retrieve);
+    app.post('/loggedinuser/', techController.verify);
 
 };
