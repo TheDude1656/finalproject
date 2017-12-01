@@ -7,9 +7,6 @@ export default {
     getUser: function() {
         return axios.get("/api/tech");
     },
-    // userLogin: function(loggedinuser) {
-    //     return axios.get("/loggedinuser", loggedinuser);
-    // },
     userAuthenticate: function(username, password) {
         return axios.post("/api/auth", username, password);
     },

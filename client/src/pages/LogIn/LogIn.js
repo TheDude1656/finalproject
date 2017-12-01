@@ -25,10 +25,10 @@ class LogIn extends Component {
                 password: this.state.password
             })
                 .then(user => {
-                    console.log("success!")
-    
+                    
+                    window.location = "/loggedin";
                 })
-                .catch(err => console.log("PASSWORD DOESN'T MATCH"));
+                .catch(err => alert("Password wrong or Tech does not exist."));
         } else {
             console.log("missing something");
         }
