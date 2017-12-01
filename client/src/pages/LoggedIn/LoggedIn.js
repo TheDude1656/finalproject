@@ -100,9 +100,7 @@ class App extends Component {
                                 <br />
                             </p>
                         </ListItemInfo>
-
                     </div>
-
                     <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Home</Link>
                     <Link to={`/NewCustomer`} className="btn btn-lg loginBtn btn-outline-primary">NewCustomer</Link>
                     <Link to={`/newticket`} className="btn btn-lg loginBtn btn-outline-danger float-right">Next</Link>

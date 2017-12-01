@@ -2,30 +2,21 @@ const Tech = require('../models').Tech;
 const bcrypt = require('bcrypt');
 
 
-
 function generateHash(tech) {
     console.log(tech.password)
     return tech.password = bcrypt.hashSync(tech.password, bcrypt.genSaltSync(5));
 }
 
-function validateHash(tech, req) {
-    // console.log(tech[0].dataValues.password);
-    console.log(tech.password)
-    console.log(req)
-    bcrypt.compareSync(tech.password, tech.body.password, (err, matched) => {
-        if (err) return res.json({error: 'Compare failed.'});
-        if (!matched) return res.json({error: 'Invalid password.'});
-        if (matched) return res.json('success!');
+function validateHash(req, tech) {
+    console.log("tech", tech, "req", req)
+    return bcrypt.compareSync(tech, req, (err, matched) => {
+        if (matched) {
+            return true
+        } else {
+            return false
+        }
     });
-  
-    // return tech.password = bcrypt.compareSync(tech.password, this.password);
-    
 }
-// function getDbHash() {
-//     let dbUserHash = "";
-
-// }
-
 
 module.exports = {
     create(req, res) {
@@ -39,27 +30,29 @@ module.exports = {
             })
             .then(tech => res.status(200).send(tech))
             .catch(error => {
-                console.log(error)
+                
                 res.status(400).send(error)
             });
     },
-    retrieve(req, res) {
-        console.log("hit validation")
-        return Tech
-        .findAll({
-            where: {
-                name: req.params.username
-            }
-        })
-        .then(tech => {
-            console.log(tech)
-            res.status(201).send(tech)
-        })
-        .catch(error => res.status(400).send(error));
-    },
+
     verify(req, res) {
-        console.log(req.body)
-        validateHash(req.body)
-        
+
+        let tech =
+            Tech.findAll({
+                where: {
+                    name: req.body.username
+                }
+            })
+                .then(tech => {
+                    let response = validateHash(tech[0].password, req.body.password)
+                    // console.log(response)
+                    if (response === true) {
+                        res.status(200).send("password worked!")
+                        
+                    } else {
+                        res.status(401).send("Unauthorized")
+                    }
+                })
+                .catch(error => res.status(401).send("not authorized"));
     }
 };

@@ -18,7 +18,6 @@ module.exports = (app) => {
 
     //login and creating of technicians
     app.post('/api/tech', techController.create);
-    app.get('/loggedinuser/:username', techController.retrieve);
-    app.post('/loggedinuser/', techController.verify);
+    app.post('/api/auth', techController.verify);
 
 };

@@ -12,54 +12,35 @@ class LogIn extends Component {
         password: ""
     };
     componentDidMount() {
-        
     }
-    verifyLogin = (user) => {
-        // console.log(this.state)
-        
-            API.userLogin({
+
+    renderLoggedIn = () => {
+
+        // window.location = "/loggedin";
+
+        if (this.state.username && this.state.password) {
+          
+            API.userAuthenticate({
                 username: this.state.username,
                 password: this.state.password
             })
                 .then(user => {
-                    
-                    this.checkLogin()
+                    console.log("success!")
+    
                 })
-                .catch(err => console.log(err));
-        
-    }
-    checkLogin = () => {
-        API.userLoginVerify({
-            username: this.state.username,
-            password: this.state.password
-        })
-       
-    }
-    renderLoggedIn = () => {
-        // console.log("hit");
-        
-        // window.location = "/loggedin";
-
-        if (this.state.username && this.state.password) {
-            console.log("we did it!");
-            this.verifyLogin();
+                .catch(err => console.log("PASSWORD DOESN'T MATCH"));
         } else {
             console.log("missing something");
         }
     };
-    
 
     handleLogin = event => {
         event.preventDefault();
-        console.log("logging in!");
-        console.log("username:", this.state.username);
-        console.log("password:", this.state.password);
         this.renderLoggedIn();
     };
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({ [name]: value });
-        
     };
     showHide = () => {
         const showhidepass = document.getElementById('techPassword');
@@ -69,9 +50,7 @@ class LogIn extends Component {
             showhidepass.setAttribute('type', 'password')
         }
     }
-
     render() {
-
         return (
             <div className="container">
                 <Jumbotron />
@@ -117,11 +96,9 @@ class LogIn extends Component {
                                 </div>
                             </div>
                             <div>
-
                                 <Link to={`../NewTech`} className="btn btn-lg loginBtn btn-outline-success">New Tech</Link>
-
                                 <Link to={`../LoggedIn`} className="btn btn-lg loginBtn btn-outline-primary" onClick={this.handleLogin}>Login</Link>
-                            <Link to={'/'} className="btn btn-lg loginBtn btn-outline-danger">Home</Link>
+                                <Link to={'/'} className="btn btn-lg loginBtn btn-outline-danger">Home</Link>
                             </div>
                         </div>
                     </div>

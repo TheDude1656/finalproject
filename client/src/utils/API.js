@@ -7,11 +7,11 @@ export default {
     getUser: function() {
         return axios.get("/api/tech");
     },
-    userLogin: function(loggedinuser) {
-        return axios.get("/loggedinuser", loggedinuser);
-    },
-    userLoginVerify: function(logInTech) {
-        return axios.post("/loggedinuser", logInTech);
+    // userLogin: function(loggedinuser) {
+    //     return axios.get("/loggedinuser", loggedinuser);
+    // },
+    userAuthenticate: function(username, password) {
+        return axios.post("/api/auth", username, password);
     },
     getCustomers: function() {
         return axios.get("/api/customers");
