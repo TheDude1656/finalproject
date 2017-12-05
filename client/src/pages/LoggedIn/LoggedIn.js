@@ -9,6 +9,8 @@ import DatePicker from 'material-ui/DatePicker';
 import Checkbox from 'material-ui/Checkbox';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
+import {List, ListItem} from 'material-ui/List';
+import Subheader from 'material-ui/Subheader';
 
 const styles = {
     block: {
@@ -72,6 +74,14 @@ class App extends Component {
         })
 
     }
+    handleDateChange = (event, date) => {
+        this.setState({
+            controlledDate: date
+        }, () => {
+            console.log(this.state.controlledDate)
+        });
+
+    };
 
     handleInputChange = event => {
         const {name, value} = event.target;
@@ -82,78 +92,132 @@ class App extends Component {
         return (
             <MuiThemeProvider>
                 <div className="container">
-                <Paper zDepth={5} rounded={true}>
-                    <SmallJumbo/>
+                    <Paper zDepth={5} rounded={true}>
+                        <SmallJumbo/>
                     </Paper>
                     <p className="text-right">Logged In User:
                     </p>
-<Paper zDepth={5}>
-                    <div className="form-group">
+                    <Paper zDepth={5}>
+                        <div className="form-group">
 
-                        <div className="form-control form-control-lg">
-                            <label>Select Customer</label>
-                            <select
-                                onChange={this.handleCustomerInfo}
-                                value={this.state.value}
-                                className="form-control form-control-lg">
-                                <option defaultValue hidden>Select or Find Customer</option>
-                                {this
-                                    .state
-                                    .customerArray
-                                    .map(custname => (
-                                        <ListItems key={custname.customername}>
-                                            {custname.customername}
-                                        </ListItems>
-                                    ))}
+                            <div className="form-control form-control-lg">
+                                <label>Select Customer</label>
+                                <select
+                                    onChange={this.handleCustomerInfo}
+                                    value={this.state.value}
+                                    className="form-control form-control-lg">
+                                    <option defaultValue hidden>Select or Find Customer</option>
+                                    {this
+                                        .state
+                                        .customerArray
+                                        .map(custname => (
+                                            <ListItems key={custname.customername}>
+                                                {custname.customername}
+                                            </ListItems>
+                                        ))}
 
-                            </select>
+                                </select>
+                            </div>
+
+                            <div className="form-control form-control-lg">
+                                <label htmlFor="customerInfo">Customer Information</label>
+                                <ListItemsInfo>
+                                    <p>
+                                        Customer Name: {this.state.customername}
+                                        <br/>
+                                        Address:{this.state.address}
+                                        <br/>
+                                        Phone:{this.state.phone}
+                                        <br/>
+                                        Contact Name:{this.state.contactname}
+                                        <br/>
+                                        Contact Email:{this.state.contactemail}
+                                        <br/>
+                                    </p>
+                                </ListItemsInfo>
+                                <br/>
+
+                                <TextField
+                                    id="serviceOrderNumber"
+                                    placeholder="Service Order #"
+                                    value={this.state.serviceOrderNumber}
+                                    onChange={this.handleInputChange}/>
+                                <DatePicker
+                                    hintText="Select Service Date"
+                                    value={this.state.controlledDate}
+                                    onChange={this.handleDateChange}/>
+
+                                <List>
+                                    <Subheader>Service Performed</Subheader>
+                                    <ListItem
+                                        primaryText="Service"
+                                        leftCheckbox={< Checkbox onCheck = {
+                                        this
+                                            .updateCheck
+                                            .bind(this)
+                                    }
+                                    style = {
+                                        styles.checkbox
+                                    } />}/>
+                                    <ListItem
+                                        primaryText="Monthly PM"
+                                        leftCheckbox={< Checkbox onCheck = {
+                                        this
+                                            .updateCheck
+                                            .bind(this)
+                                    }
+                                    style = {
+                                        styles.checkbox
+                                    } />}/>
+                                    <ListItem
+                                        primaryText="3 Month Pm"
+                                        leftCheckbox={< Checkbox onCheck = {
+                                        this
+                                            .updateCheck
+                                            .bind(this)
+                                    }
+                                    style = {
+                                        styles.checkbox
+                                    } />}/>
+                                    <ListItem
+                                        primaryText="6 Month Pm"
+                                        leftCheckbox={< Checkbox onCheck = {
+                                        this
+                                            .updateCheck
+                                            .bind(this)
+                                    }
+                                    style = {
+                                        styles.checkbox
+                                    } />}/>
+                                    <ListItem
+                                        primaryText="Yearly PM"
+                                        leftCheckbox={< Checkbox onCheck = {
+                                        this
+                                            .updateCheck
+                                            .bind(this)
+                                    }
+                                    style = {
+                                        styles.checkbox
+                                    } />}/>
+                                    <ListItem
+                                        primaryText="Other"
+                                        leftCheckbox={< Checkbox onCheck = {
+                                        this
+                                            .updateCheck
+                                            .bind(this)
+                                    }
+                                    style = {
+                                        styles.checkbox
+                                    } />}/>
+                                </List>
+                            </div>
+
+                            <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Home</Link>
+                            <Link to={`/NewCustomer`} className="btn btn-lg loginBtn btn-outline-primary">NewCustomer</Link>
+                            <Link
+                                to={`/newticket`}
+                                className="btn btn-lg loginBtn btn-outline-danger float-right">Next</Link>
                         </div>
-
-                        <div className="form-control form-control-lg">
-                            <label htmlFor="customerInfo">Customer Information</label>
-                            <ListItemsInfo>
-                                <p>
-                                    Customer Name: {this.state.customername}
-                                    <br/>
-                                    Address:{this.state.address}
-                                    <br/>
-                                    Phone:{this.state.phone}
-                                    <br/>
-                                    Contact Name:{this.state.contactname}
-                                    <br/>
-                                    Contact Email:{this.state.contactemail}
-                                    <br/>
-                                </p>
-                            </ListItemsInfo>
-                            <br/>
-
-                            <TextField
-                                className="col-3"
-                                id="serviceOrderNumber"
-                                placeholder="Service Order #"
-                                value={this.state.serviceOrderNumber}
-                                onChange={this.handleInputChange}/>
-                            <DatePicker
-                                className="col-3"
-                                hintText="Select Date"
-                                value={this.state.controlledDate}
-                                onChange={this.handleInputChange}/>
-                            <Checkbox
-                                className="col-3"
-                                label="Simple with controlled value"
-                                checked={this.state.checked}
-                                onCheck={this
-                                .updateCheck
-                                .bind(this)}
-                                style={styles.checkbox}/>
-                        </div>
-
-                        <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Home</Link>
-                        <Link to={`/NewCustomer`} className="btn btn-lg loginBtn btn-outline-primary">NewCustomer</Link>
-                        <Link
-                            to={`/newticket`}
-                            className="btn btn-lg loginBtn btn-outline-danger float-right">Next</Link>
-                    </div>
                     </Paper>
                 </div >
             </MuiThemeProvider>
