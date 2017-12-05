@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import '../../App.css';
-import Jumbotron from "../../components/Jumbotron/Jumbotron";
+import SmallJumbo from "../../components/SmallJumbo/SmallJumbo";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
-
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Paper from 'material-ui/Paper';
 
 class App extends Component {
 
@@ -45,8 +46,11 @@ class App extends Component {
     };
     render() {
         return (
+            <MuiThemeProvider>
             <div className="container">
-                <Jumbotron />
+            <Paper zDepth={5} rounded={false}>
+                <SmallJumbo />
+                </Paper>
                 <div className="form-group">
                     <label htmlFor="name">Username</label>
                     <input
@@ -104,7 +108,7 @@ class App extends Component {
                 >Create</Link>
 
             </div>
-
+</MuiThemeProvider>
         );
     };
 };

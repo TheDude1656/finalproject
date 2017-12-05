@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const NewTech = () => (
     
-        <Link to={`../NewTech`} className="btn btn-lg btn-outline-danger col newTechBtn">New Tech</Link>
+        <Link to={`../NewTech`} className="btn btn-lg btn-success col">New Tech</Link>
     
 );
 

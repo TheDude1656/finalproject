@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../../App.css';
 
 import SmallJumbo from "../../components/SmallJumbo/SmallJumbo";
-import {ListItemInfo} from "../../components/List/ListItemInfo";
+import {ListItemsInfo} from "../../components/List/ListItemsInfo";
 import { Link } from "react-router-dom";
 
 class App extends Component {
@@ -29,7 +29,7 @@ class App extends Component {
 <div className="form-group">
                 <div className="form-control form-control-lg">
                         <label htmlFor="customerInfo">Selected Customer Information</label>
-                        <ListItemInfo>
+                        <ListItemsInfo>
                             <p>
                                 Customer Name: {this.state.customername}
                                 <br />
@@ -42,7 +42,7 @@ class App extends Component {
                                 Contact Email:{this.state.contactemail}
                                 <br />
                             </p>
-                        </ListItemInfo>
+                        </ListItemsInfo>
 </div>
                     </div>
                     <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Home</Link>

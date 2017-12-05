@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import Jumbotron from "../../components/Jumbotron/Jumbotron";
-
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Paper from 'material-ui/Paper';
 
 class LogIn extends Component {
 
@@ -16,7 +17,9 @@ class LogIn extends Component {
 
     renderLoggedIn = () => {
 
-        // window.location = "/loggedin";
+        // window.location = "/loggedin";\
+        const validatePassword = document.getElementById('techPassword');
+        const validateUser = document.getElementById('techUserName');
 
         if (this.state.username && this.state.password) {
           
@@ -28,8 +31,12 @@ class LogIn extends Component {
                     
                     window.location = "/loggedin";
                 })
-                .catch(err => alert("Password wrong or Tech does not exist."));
+                .catch(err => {
+                    validateUser.setAttribute('class', 'form-control is-invalid')
+                    // alert("Password wrong or Tech does not exist.")
+                });
         } else {
+            validatePassword.setAttribute('class', 'form-control is-invalid')
             console.log("missing something");
         }
     };
@@ -52,8 +59,11 @@ class LogIn extends Component {
     }
     render() {
         return (
+            <MuiThemeProvider>
             <div className="container">
+            <Paper zDepth={5} rounded={false}>
                 <Jumbotron />
+                </Paper>
                 <div
                     id="user"
                     role="dialog"
@@ -77,6 +87,9 @@ class LogIn extends Component {
                                         aria-label="Tech-Username"
                                         onChange={this.handleInputChange}
                                         value={this.state.username} />
+                                        <div className="invalid-feedback">
+                                        Tech does not exist or invalid password supplied.
+                                      </div>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="techPassword">Password</label>
@@ -93,6 +106,9 @@ class LogIn extends Component {
                                         placeholder="Password"
                                         onChange={this.handleInputChange}
                                         value={this.state.password} />
+                                        <div className="invalid-feedback">
+                                        Please provide a valid password.
+                                      </div>
                                 </div>
                             </div>
                             <div>
@@ -105,6 +121,7 @@ class LogIn extends Component {
 
                 </div>
             </div>
+            </MuiThemeProvider>
         )
     }
 }
