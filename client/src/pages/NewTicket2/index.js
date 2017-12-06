@@ -1,1 +1,0 @@
-export { default } from "./NewTicket2.js";
