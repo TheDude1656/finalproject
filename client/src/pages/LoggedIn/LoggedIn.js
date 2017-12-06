@@ -243,7 +243,7 @@ class App extends Component {
                                             value={custname.customername}
                                             primaryText={custname.customername}/>))}
                                 </SelectField>
-                                <FlatButton href={'/NewCustomer'} fullWidth={true} primary={true}>New Customer</FlatButton>
+                                <FlatButton href={'/NewCustomer'} fullWidth={true} backgroundColor="LightBlue">New Customer</FlatButton>
 
                             </div>
                             <Card>
@@ -368,9 +368,9 @@ class App extends Component {
                             </div>
                             <br/>
                             <div className="container">
-                                <RaisedButton href={`/`} primary={true}>Home</RaisedButton>
+                                <RaisedButton href={`/`} backgroundColor="LightBlue">Home</RaisedButton>
 
-                                <RaisedButton onClick={this.doSomething} className="float-right" primary={true}>Next</RaisedButton>
+                                <RaisedButton onClick={this.doSomething} className="float-right" backgroundColor="LightBlue">Next</RaisedButton>
                             </div>
                             <br/>
 

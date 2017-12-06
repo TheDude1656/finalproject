@@ -3,6 +3,10 @@ import '../../App.css';
 import Jumbotron from "../../components/Jumbotron/Jumbotron";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 class App extends Component {
     state = {
@@ -77,8 +81,12 @@ class App extends Component {
 
     render() {
         return (
+            <MuiThemeProvider>
             <div className="container">
-                <Jumbotron />
+            <Paper zDepth={5} rounded={false}>
+            <Jumbotron />
+                    </Paper>
+                
                 <div className="form-group">
                     <label htmlFor="name">Customer Name</label>
                     <input
@@ -165,7 +173,7 @@ class App extends Component {
                 <Link to={`/LoggedIn`} className="btn btn-lg loginBtn btn-outline-danger">Back</Link>
 
             </div>
-
+            </MuiThemeProvider>
         );
     };
 };

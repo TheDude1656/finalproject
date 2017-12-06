@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import '../../App.css';
-import {Link} from "react-router-dom";
 import Jumbotron from "../../components/Jumbotron/Jumbotron";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
-import NewTech from "../../components/NewTech/NewTech";
+import RaisedButton from 'material-ui/RaisedButton';
 
 class App extends Component {
 
@@ -18,11 +17,12 @@ class App extends Component {
                     </Paper>
 
                     <Paper zDepth={5} rounded={true}>
-                        <Link to={`/login`} className="btn btn-lg btn-danger col">Login</Link>
+                        <RaisedButton href={`/login`} fullWidth={true} backgroundColor="#00008B">Login</RaisedButton>
+
                     </Paper>
-                    <br/><br/>
+                    <br/>
                     <Paper zDepth={5} rounded={true}>
-                        <NewTech/>
+                        <RaisedButton href={`/newtech`} fullWidth={true}>New Technician</RaisedButton>
                     </Paper>
 
                 </div>

@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, {Component} from "react";
 import API from "../../utils/API";
 import Jumbotron from "../../components/Jumbotron/Jumbotron";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 class LogIn extends Component {
 
@@ -12,8 +13,7 @@ class LogIn extends Component {
         email: "",
         password: ""
     };
-    componentDidMount() {
-    }
+    componentDidMount() {}
 
     renderLoggedIn = () => {
 
@@ -22,13 +22,11 @@ class LogIn extends Component {
         const validateUser = document.getElementById('techUserName');
 
         if (this.state.username && this.state.password) {
-          
-            API.userAuthenticate({
-                username: this.state.username,
-                password: this.state.password
-            })
+
+            API
+                .userAuthenticate({username: this.state.username, password: this.state.password})
                 .then(user => {
-                    
+
                     window.location = "/loggedin";
                 })
                 .catch(err => {
@@ -46,9 +44,17 @@ class LogIn extends Component {
         this.renderLoggedIn();
     };
     handleInputChange = event => {
-        const { name, value } = event.target;
-        this.setState({ [name]: value });
+        const {name, value} = event.target;
+        this.setState({[name]: value});
     };
+    handleUserChange = event => {
+        console.log(event.target.value)
+        this.setState({username: event.target.value})
+    }
+    handlePassword = event => {
+        console.log(event.target.value)
+        this.setState({password: event.target.value})
+    }
     showHide = () => {
         const showhidepass = document.getElementById('techPassword');
         if (showhidepass.type === 'password') {
@@ -60,67 +66,92 @@ class LogIn extends Component {
     render() {
         return (
             <MuiThemeProvider>
-            <div className="container">
-            <Paper zDepth={5} rounded={false}>
-                <Jumbotron />
-                </Paper>
-                <div
-                    id="user"
-                    role="dialog"
-                    aria-labelledby="techLogin"
-                >
-                    <div>
+                <div className="container">
+                    <Paper zDepth={5} rounded={false}>
+                        <Jumbotron/>
+                    </Paper>
+                    <div id="user" role="dialog" aria-labelledby="techLogin">
                         <div>
                             <div>
-                                <h5 id="Label">Technician Login</h5>
+                                <div>
+                                    <h5 id="Label">Technician Login</h5>
+                                </div>
 
-                            </div>
-                            <div>
-                                <div className="form-group">
-                                    <label htmlFor="techUserName">Username</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        id="techUserName"
-                                        name="username"
-                                        placeholder="Tech Username"
-                                        aria-label="Tech-Username"
-                                        onChange={this.handleInputChange}
-                                        value={this.state.username} />
-                                        <div className="invalid-feedback">
-                                        Tech does not exist or invalid password supplied.
-                                      </div>
+                                <div>
+
+                                    <div>
+
+                                        <TextField
+                                            type="text"
+                                            id="techUserName"
+                                            hintText="Tech Username"
+                                            floatingLabelText="Username"
+                                            onChange={this.handleUserChange}
+                                            value={this.state.username}
+                                            fullWidth={true}/>
+
+                                    </div>
+
+                                    <div className="form-group">
+
+                                        <div className="row">
+                                            <div className="col-11">
+
+                                                <TextField
+                                                    type="password"
+                                                    id="techPassword"
+                                                    name="password"
+                                                    floatingLabelText="Password"
+                                                    hintText="Password"
+                                                    onChange={this.handlePassword}
+                                                    value={this.state.password}
+                                                    fullWidth={true}/>
+                                            </div>
+                                            <div className="col-1">
+                                                <RaisedButton
+                                                    className="float-right"
+                                                    id="showHideBtn"
+                                                    name="showHideBtn"
+                                                    onClick={this.showHide}>
+                                                    <i className="fa fa-eye" aria-hidden="true"></i>
+                                                </RaisedButton>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
-                                <div className="form-group">
-                                    <label htmlFor="techPassword">Password</label>
-                                    <button
-                                        className="btn btn-sm loginBtn btn-outline-danger float-right"
-                                        id="showHideBtn"
-                                        name="showHideBtn"
-                                        onClick={this.showHide}><i className="fa fa-eye" aria-hidden="true"></i></button>
-                                    <input
-                                        type="password"
-                                        className="form-control"
-                                        id="techPassword"
-                                        name="password"
-                                        placeholder="Password"
-                                        onChange={this.handleInputChange}
-                                        value={this.state.password} />
-                                        <div className="invalid-feedback">
-                                        Please provide a valid password.
-                                      </div>
+                                <div className="container">
+                                    <div className="row">
+                                        <div className="col-4">
+                                            <Paper zDepth={5} rounded={false}>
+                                                <RaisedButton
+                                                    href={`/LoggedIn`}
+                                                    fullWidth={true}
+                                                    backgroundColor="LightBlue"
+                                                    onClick={this.handleLogin}>Login</RaisedButton>
+                                            </Paper>
+                                        </div>
+                                        <div className="col-4">
+                                            <Paper zDepth={5} rounded={false}>
+                                                <RaisedButton
+                                                    href={`/NewTech`}
+                                                    fullWidth={true}
+                                                    backgroundColor="LightGreen"
+                                                    onClick={this.handleLogin}>New Technician</RaisedButton>
+                                            </Paper>
+                                        </div>
+                                        <div className="col-4">
+                                            <Paper zDepth={5} rounded={false}>
+                                                <RaisedButton href={`/`} fullWidth={true} backgroundColor="#607D8B">Home</RaisedButton>
+                                            </Paper>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div>
-                                <Link to={`../NewTech`} className="btn btn-lg loginBtn btn-outline-success">New Tech</Link>
-                                <Link to={`../LoggedIn`} className="btn btn-lg loginBtn btn-outline-primary" onClick={this.handleLogin}>Login</Link>
-                                <Link to={'/'} className="btn btn-lg loginBtn btn-outline-danger">Home</Link>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
             </MuiThemeProvider>
         )
     }
