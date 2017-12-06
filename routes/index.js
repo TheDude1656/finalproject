@@ -20,4 +20,7 @@ module.exports = (app) => {
     app.post('/api/tech', techController.create);
     app.post('/api/auth', techController.verify);
 
+    //get all techs
+    app.get('/api/tech', techController.list);
+
 };
