@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../App.css';
 import Jumbotron from "../../components/Jumbotron/Jumbotron";
-import { Link } from "react-router-dom";
+
 import API from "../../utils/API";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
@@ -73,7 +73,27 @@ class App extends Component {
             .catch(err => console.log(err));
 
     };
-
+customerChange = event => {
+    this.setState({customername: event.target.value})
+}
+customerNumber = event => {
+    this.setState({customerNumber: event.target.value})
+}
+customeremail = event => {
+    this.setState({customeremail: event.target.value})
+}
+customeraddress = event => {
+    this.setState({customeraddress: event.target.value})
+}
+contactname = event => {
+    this.setState({contactname: event.target.value})
+}
+contactphone = event => {
+    this.setState({contactphone: event.target.value})
+}
+contactemail = event => {
+    this.setState({contactEmail: event.target.value})
+}
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({ [name]: value });
@@ -87,90 +107,89 @@ class App extends Component {
             <Jumbotron />
                     </Paper>
                 
-                <div className="form-group">
-                    <label htmlFor="name">Customer Name</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="customername"
-                        name="customername"
-                        placeholder="Customer Name"
-                        aria-label="Customer Name"
-                        onChange={this.handleInputChange}
-                        value={this.state.customername} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="customerphone">Customer's Phone</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="customerphone"
-                        name="customerphone"
-                        placeholder="Phone Number"
-                        onChange={this.handleInputChange}
-                        value={this.state.customerphone} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="customeremail">Customer's Email</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="customeremail"
-                        name="customeremail"
-                        placeholder="Customer's Email"
-                        onChange={this.handleInputChange}
-                        value={this.state.customeremail} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="customeraddress">Customer's Address</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="customeraddress"
-                        name="customeraddress"
-                        placeholder="Customer's Address"
-                        onChange={this.handleInputChange}
-                        value={this.state.customeraddress} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="contactname">Contact Name</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="contactname"
-                        name="contactname"
-                        placeholder="Contact's Name"
-                        onChange={this.handleInputChange}
-                        value={this.state.contactname} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="contactphone">Contact's Phone</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="contactphone"
-                        name="contactphone"
-                        placeholder="Contact's Phone"
-                        onChange={this.handleInputChange}
-                        value={this.state.contactphone} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="contactEmail">Contact's Email</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="contactEmail"
-                        name="contactEmail"
-                        placeholder="Contact's Phone"
-                        onChange={this.handleInputChange}
-                        value={this.state.contactEmail} />
-                </div>
-                <Link to={`/`} className="btn btn-lg loginBtn btn-outline-primary">Home</Link>
-                <Link
-                    to={`../LoggedIn`}
-                    className="btn btn-lg loginBtn btn-outline-success"
-                    onClick={this.handleNewCustomer}>Create</Link>
-                <Link to={`/LoggedIn`} className="btn btn-lg loginBtn btn-outline-danger">Back</Link>
+                
+                <TextField
+                            type="text"
+                            id="customername"
+                            hintText="Customer's Name"
+                            floatingLabelText="Customer's Name"
+                            onChange={this.customerChange}
+                            value={this.state.customername}
+                            fullWidth={true}/>
+                   
+               
+                
+                <TextField
+                            type="text"
+                            id="customerphone"
+                            hintText="Customer's Phone"
+                            floatingLabelText="Customer's Phone"
+                            onChange={this.customerNumber}
+                            value={this.state.customerphone}
+                            fullWidth={true}/>
+                   
+                          
+                <TextField
+                            type="text"
+                            id="customeremail"
+                            hintText="Customer's E-Mail"
+                            floatingLabelText="Customer's E-Mail"
+                            onChange={this.customeremail}
+                            value={this.state.customeremail}
+                            fullWidth={true}/>
+                     <TextField
+                            type="text"
+                            id="customeraddress"
+                            hintText="Customer's Address"
+                            floatingLabelText="Customer's Address"
+                            onChange={this.customeraddress}
+                            value={this.state.customeraddress}
+                            fullWidth={true}/>
+                 <TextField
+                            type="text"
+                            id="contactname"
+                            hintText="Contact's Name"
+                            floatingLabelText="Contact's Name"
+                            onChange={this.contactname}
+                            value={this.state.contactname}
+                            fullWidth={true}/>
+                
+                <TextField
+                            type="text"
+                            id="contactphone"
+                            hintText="Contact's Phone"
+                            floatingLabelText="Contact's Phone"
+                            onChange={this.contactphone}
+                            value={this.state.contactphone}
+                            fullWidth={true}/>
+                <TextField
+                            type="text"
+                            id="contactEmail"
+                            hintText="Contact's E-Mail"
+                            floatingLabelText="Contact's E-Mail"
+                            onChange={this.contactemail}
+                            value={this.state.contactEmail}
+                            fullWidth={true}/>
+                
+                                
+                <div className="row">
+                    <div className="col-4">
+                    <Paper zDepth={5} rounded={false}>
+                        <RaisedButton href={`/`} fullWidth={true} backgroundColor="LightBlue">Home</RaisedButton>
+                    </Paper>
+                   </div>
+                   <div className="col-4">
+                    <Paper zDepth={5} rounded={false}>
+                        <RaisedButton href={`/LoggedIn`} fullWidth={true} onClick={this.handleNewCustomer} backgroundColor="">Create</RaisedButton>
+                    </Paper>
+                    </div>
+                    <div className="col-4">
+                    <Paper zDepth={5} rounded={false}>
+                        <RaisedButton href={`/LoggedIn`} fullWidth={true} backgroundColor="LightBlue">Back</RaisedButton>
+                    </Paper>
+                    </div>
+                    </div>
+                    
 
             </div>
             </MuiThemeProvider>
