@@ -85,7 +85,8 @@ class App extends Component {
         contactname: '',
         contactemail: '',
         selectedTech: '',
-        signature: ''
+        signature: '',
+        jobCompleted: ''
     };
     updateCheck = (data) => {
 
@@ -94,6 +95,36 @@ class App extends Component {
     handleOpen = () => {
         this.setState({open: true});
     };
+    submitFinishedTicket = event => {
+        console.log(event)
+        API
+            .createTicket({
+                customername: this.state.value,
+                customeraddress: this.state.address,
+                customerphone: this.state.phone,
+                // customeremail: this.state.customeremail,
+                contactname: this.state.contactname,
+                // contactphone: this.state.contactphone,
+                contactemail: this.state.contactemail,
+                insertedByTech: this.state.techName,
+                servicedate: this.state.serviceDate,
+                serviceOrderNumber: this.state.serviceOrderNumber,
+                travelhours: this.state.travelhours,
+                startTime: this.state.startTime,
+                stopTime: this.state.stopTime,
+                serviceType: this.state.serviceTypeValue,
+                vehicleUsed: this.state.vehicleUsed,
+                poNumber: this.state.poNumber,
+                jobCompleted: this.state.jobCompleted,
+                jobDescription: this.state.jobDescription,
+                customerSignature: this.state.signature
+                
+            })
+            .then(res => {
+                alert("New Ticket has been created!");
+            })
+            .catch(err => console.log(err));
+    }
 
     handleClose = () => {
         this.setState({open: false});
@@ -131,8 +162,9 @@ class App extends Component {
         console.log({value})
         this.setState({value})
     };
-    doSomething = () => {
-        console.log(this.state);
+    doSomething = (event) => {
+        this.submitFinishedTicket(event)
+        alert("this happened");
     }
     handleCustomerInfo = (event, index, value) => {
 

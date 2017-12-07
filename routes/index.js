@@ -1,6 +1,7 @@
 const customerController = require('../controllers').customers;
 const customerInfoController = require('../controllers').customerInfos;
 const techController = require('../controllers').techs;
+const ticketCreation = require('../controllers').tickets;
 
 
 module.exports = (app) => {
@@ -23,4 +24,6 @@ module.exports = (app) => {
     //get all techs
     app.get('/api/tech', techController.list);
 
+    //ticket section
+    app.post('/api/newticket', ticketCreation.create);
 };
