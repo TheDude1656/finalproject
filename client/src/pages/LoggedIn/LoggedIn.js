@@ -121,7 +121,7 @@ class App extends Component {
                 
             })
             .then(res => {
-                alert("New Ticket has been created!");
+                window.location = "/Completed";
             })
             .catch(err => console.log(err));
     }
@@ -164,7 +164,7 @@ class App extends Component {
     };
     doSomething = (event) => {
         this.submitFinishedTicket(event)
-        alert("this happened");
+        
     }
     handleCustomerInfo = (event, index, value) => {
 
@@ -193,6 +193,7 @@ class App extends Component {
 
     };
     handleStartTimeChange = (event, time) => {
+        
         this.setState({
             startTime: time
         }, () => {

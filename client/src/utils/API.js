@@ -20,7 +20,6 @@ export default {
         return axios.post("/api/customers/info", newCustomerInfo);
     },
     createTicket: function (newTicket) {
-        console.log(newTicket)
         return axios.post("/api/newticket", newTicket);
     }
 };

@@ -48,11 +48,11 @@ class LogIn extends Component {
         this.setState({[name]: value});
     };
     handleUserChange = event => {
-        console.log(event.target.value)
+        
         this.setState({username: event.target.value})
     }
     handlePassword = event => {
-        console.log(event.target.value)
+        
         this.setState({password: event.target.value})
     }
     showHide = () => {
@@ -137,7 +137,7 @@ class LogIn extends Component {
                                                     href={`/NewTech`}
                                                     fullWidth={true}
                                                     backgroundColor="LightGreen"
-                                                    onClick={this.handleLogin}>New Technician</RaisedButton>
+                                                    >New Technician</RaisedButton>
                                             </Paper>
                                         </div>
                                         <div className="col-4">

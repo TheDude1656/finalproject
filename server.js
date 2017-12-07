@@ -4,7 +4,7 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-
+require('pdfmake');
 const db = require("./models");
 require('dotenv').config();
 

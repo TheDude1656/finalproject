@@ -2,19 +2,19 @@ module.exports = (sequelize, DataTypes) => {
     const Ticket = sequelize.define("Ticket", {
         customername: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         customeraddress: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         customerphone: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         customeremail:{
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         contactname: {
             type: DataTypes.STRING,
@@ -30,18 +30,18 @@ module.exports = (sequelize, DataTypes) => {
         },
         insertedByTech: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         servicedate: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         serviceOrderNumber: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         travelhours: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: true
         },
         startTime: {
@@ -54,14 +54,14 @@ module.exports = (sequelize, DataTypes) => {
         },
         serviceType: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         vehicleUsed: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         poNumber: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: true
         },
         jobCompleted: {

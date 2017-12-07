@@ -8,3 +8,6 @@ id = "exampleForm"
 name = "text"
 placeholder = "Enter Text" />
  </div>
+
+
+ .toTimeString().replace(/^(\d\d:\d\d).*$/, '$1')
