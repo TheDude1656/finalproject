@@ -16,44 +16,13 @@ import FlatButton from 'material-ui/FlatButton';
 import SignaturePad from "react-signature-pad";
 import Dialog from 'material-ui/Dialog';
 
-const items = [ < MenuItem key = {
-        1
-    }
-    value = {
-        "30 Day PM"
-    }
-    primaryText = "30 Day PM" />, < MenuItem key = {
-        2
-    }
-    value = {
-        "60 Day PM"
-    }
-    primaryText = "60 Day PM" />, < MenuItem key = {
-        3
-    }
-    value = {
-        "90 Day PM"
-    }
-    primaryText = "90 Day PM" />, < MenuItem key = {
-        4
-    }
-    value = {
-        "180 Day PM"
-    }
-    primaryText = "180 Day PM" />, < MenuItem key = {
-        5
-    }
-    value = {
-        "365 Day Pm"
-    }
-    primaryText = "365 Day Pm" />, < MenuItem key = {
-        6
-    }
-    value = {
-        "Service"
-    }
-    primaryText = "Service" />
-];
+const items = [<MenuItem key = {1} value = {"30 Day PM"} primaryText = "30 Day PM" />, 
+<MenuItem key = {2} value = {"60 Day PM"} primaryText = "60 Day PM" />, 
+<MenuItem key = {3} value = {"90 Day PM"} primaryText = "90 Day PM" />, 
+<MenuItem key = {4} value = {"180 Day PM"} primaryText = "180 Day PM" />,
+<MenuItem key = {5} value = {"365 Day Pm"} primaryText = "365 Day Pm" />,
+<MenuItem key = {6} value = {"Service"} primaryText = "Service" />];
+
 const customContentStyle = {
     width: '700px',
     maxWidth: 'none',
@@ -126,18 +95,24 @@ class App extends Component {
             .catch(err => console.log(err));
     }
 
-    handleClose = () => {
-        this.setState({open: false});
-    };
+    handleClose = (base64String) => {
+             
+        var customerSig = this.refs.customerSignature
+        this.setState({
+            open: false,
+            signature: customerSig.toDataURL()
+        })
+    }
+
     handleSaveClose = () => {
               
-        // signature.clear()
         this.setState({open: false});
     };
     componentDidMount() {
 
         this.getAllCustomers()
         this.getAllTechs()
+        
 
     }
     handleServiceTypeChange = (event, index, serviceTypeValue) => this.setState({serviceTypeValue});
@@ -240,12 +215,12 @@ class App extends Component {
             <FlatButton
               label="Cancel"
               primary={true}
-              onClick={this.handleClose}
+              onClick={this.handleSaveClose}
             />,
             <FlatButton
               label="Submit"
               primary={true}
-              onClick={this.handleSaveClose}
+              onClick={this.handleClose}
               
             />,
           ];
@@ -403,6 +378,7 @@ class App extends Component {
                                   contentStyle={customContentStyle}
                                   open={this.state.open}
                                 >
+                                
                                   <SignaturePad ref="customerSignature"/>
                                 </Dialog>
                               </div>

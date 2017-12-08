@@ -73,7 +73,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true
         },
         customerSignature: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: true
         }
 
