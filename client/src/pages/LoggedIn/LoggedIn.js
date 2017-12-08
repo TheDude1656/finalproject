@@ -98,12 +98,19 @@ class App extends Component {
     handleClose = (base64String) => {
              
         var customerSig = this.refs.customerSignature
+        
         this.setState({
             open: false,
             signature: customerSig.toDataURL()
+        }, () => {
+            var sigImg = document.getElementById('custsigspot')
+            sigImg.setAttribute('src', this.state.signature)
         })
+        
     }
-
+showSignature = () => {
+    
+}
     handleSaveClose = () => {
               
         this.setState({open: false});
@@ -380,7 +387,8 @@ class App extends Component {
                                 >
                                 
                                   <SignaturePad ref="customerSignature"/>
-                                </Dialog>
+                                </Dialog><br />
+                                <img style={{maxWidth: 700, maxHeight: 150}} id="custsigspot" alt=""  />
                               </div>
                             </div>
                             <br/>
