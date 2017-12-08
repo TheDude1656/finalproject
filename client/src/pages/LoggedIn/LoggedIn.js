@@ -304,19 +304,22 @@ class App extends Component {
                                             id="serviceOrderNumber"
                                             placeholder="Service Order #"
                                             value={this.state.serviceOrderNumber}
-                                            onChange={this.handleInputChangeService}/>
+                                            onChange={this.handleInputChangeService}
+                                            fullWidth={true}/>
                                     </div>
                                     <div className="col-4">
                                         <DatePicker
                                             hintText="Select Service Date"
                                             value={this.state.serviceDate}
-                                            onChange={this.handleDateChange}/>
+                                            onChange={this.handleDateChange}
+                                            fullWidth={true}/>
                                     </div>
                                     <div className="col-4">
                                         <SelectField
                                             value={this.state.serviceTypeValue}
                                             onChange={this.handleServiceTypeChange}
-                                            errorText={!serviceType && 'Select a service'}>
+                                            errorText={!serviceType && 'Select a service'}
+                                            fullWidth={true}>
                                             {items}
                                         </SelectField>
                                     </div>
@@ -328,6 +331,7 @@ class App extends Component {
                                             hintText="Select Start Time"
                                             format="24hr"
                                             minutesStep={5}
+                                            fullWidth={true}
                                             value={this.state.startTime}
                                             onChange={this.handleStartTimeChange}/>
                                     </div>
@@ -336,6 +340,7 @@ class App extends Component {
                                             hintText="Select Stop Time"
                                             format="24hr"
                                             minutesStep={5}
+                                            fullWidth={true}
                                             value={this.state.stopTime}
                                             onChange={this.handleStopTimeChange}/>
                                     </div>
@@ -344,6 +349,7 @@ class App extends Component {
                                             id="poNumber"
                                             placeholder="Purchase Order #"
                                             value={this.state.poNumber}
+                                            fullWidth={true}
                                             onChange={this.handlePoChange}/>
                                     </div>
                                 </div>
@@ -353,6 +359,7 @@ class App extends Component {
                                         <SelectField
                                             floatingLabelText="Select Tech"
                                             value={this.state.selectedTech}
+                                            fullWidth={true}
                                             onChange={this.selectTech}>
                                             {this
                                                 .state
@@ -370,6 +377,7 @@ class App extends Component {
                                     <div className="col-4">
                                         <TextField
                                             id="traveltime"
+                                            fullWidth={true}
                                             placeholder="Enter Travel Hours"
                                             value={this.state.travelhours}
                                             onChange={this.handletravelhours}/>

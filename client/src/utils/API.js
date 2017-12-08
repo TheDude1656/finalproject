@@ -21,5 +21,8 @@ export default {
     },
     createTicket: function (newTicket) {
         return axios.post("/api/newticket", newTicket);
+    },
+    getLastTicket: function (lastTicket) {
+        return axios.get("/api/ticket", lastTicket);
     }
 };

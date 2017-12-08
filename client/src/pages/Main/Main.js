@@ -17,7 +17,7 @@ class App extends Component {
                     </Paper>
 
                     <Paper zDepth={5} rounded={true}>
-                        <RaisedButton href={`/login`} fullWidth={true} backgroundColor="#00008B">Login</RaisedButton>
+                        <RaisedButton href={`/login`} fullWidth={true} backgroundColor="LightBlue">Login</RaisedButton>
 
                     </Paper>
                     <br/>

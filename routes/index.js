@@ -26,4 +26,5 @@ module.exports = (app) => {
 
     //ticket section
     app.post('/api/newticket', ticketCreation.create);
+    app.get('/api/ticket', ticketCreation.list);
 };

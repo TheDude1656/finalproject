@@ -32,7 +32,8 @@ module.exports = {
     list(req,res){
         return Ticket
             .findAll({
-
+                limit: 1,
+                order: [['createdAt', 'DESC']]
             })
             .then(ticket => res.status(200).send(ticket))
             .catch(err => res.status(404).send(error));
