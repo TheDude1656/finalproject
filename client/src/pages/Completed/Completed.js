@@ -90,7 +90,7 @@ class App extends Component {
                                     <br/>
                                     Job Completed: {this.state.lastTicket.jobCompleted}
                                     <br/>
-                                    Work Done: {this.state.lastTicket.jobDesription}
+                                    Work Done: {this.state.lastTicket.jobDescription}
                                     <br/>
                                     Customer Signature: {this.state.lastTicket.customerSignature}
                                     <br/>
