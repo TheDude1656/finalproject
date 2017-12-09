@@ -77,7 +77,7 @@ customerChange = event => {
     this.setState({customername: event.target.value})
 }
 customerNumber = event => {
-    this.setState({customerNumber: event.target.value})
+    this.setState({customerphone: event.target.value})
 }
 customeremail = event => {
     this.setState({customeremail: event.target.value})
@@ -94,6 +94,7 @@ contactphone = event => {
 contactemail = event => {
     this.setState({contactEmail: event.target.value})
 }
+
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({ [name]: value });
